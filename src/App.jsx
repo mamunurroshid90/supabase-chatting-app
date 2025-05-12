@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "../supabaseCliend";
 import { FcGoogle } from "react-icons/fc";
+import { RiRadioButtonLine } from "react-icons/ri";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const siteUrl = import.meta.env.VITE_SITE_URL;
 
@@ -156,33 +158,41 @@ function App() {
   }
 
   return (
-    <div className="w-full flex h-screen justify-center items-center p-4">
-      <div className="border-[1px] border-gray-700 max-w-6xl w-full min-h-[600px] rounded-lg">
+    <div className="w-full flex justify-center items-center p-4">
+      <div className="border-[1px] border-gray-700 max-w-6xl w-full grid grid-rows-[auto_1fr_auto] min-h-screen  rounded-lg">
         {/* Header */}
-        <div className="flex justify-between h-20 border-b-[1px] border-gray-700">
-          <div className="p-4">
-            <p className="text-gray-300">
+        <div className="flex justify-between items-center border-b-[1px] h-24 border-gray-700">
+          <div className="p-4 max-w-[50%] sm:max-w-[70%]">
+            <p className="text-gray-300 font-semibold">
               Signed in as
               <span className="italic text-sm text-blue-500 px-1">
                 {session?.user?.email}
               </span>
             </p>
-            <p className="text-gray-300 italic text-xs">
+            <p className="text-gray-300 text-xs flex items-center gap-1">
+              <span className=" text-green-500">
+                <RiRadioButtonLine />
+              </span>
               {usersOnline.length} users online
             </p>
           </div>
-          <button
-            onClick={signOut}
-            className="m-2 sm:mr-4 text-gray-300 bg-[#191919] px-4 py-1 rounded-md"
-          >
-            Sign out
-          </button>
+          <div>
+            <button
+              onClick={signOut}
+              className="m-2 sm:mr-4 flex items-center gap-2 text-gray-300 bg-[#191919] px-4 py-3 font-semibold capitalize text-xs rounded-md cursor-pointer hover:bg-gray-800 transition-all duration-300"
+            >
+              Sign out
+              <span className=" text-md">
+                <FaSignOutAlt />
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Chat messages */}
         <div
           ref={chatContainerRef}
-          className="p-4 flex flex-col overflow-y-auto h-[500px] text-white"
+          className="p-4 flex flex-col overflow-y-auto min-h-0 text-white"
         >
           {messages.map((msg, index) => (
             <div
@@ -236,7 +246,7 @@ function App() {
         {/* Message input */}
         <form
           onSubmit={sendMessage}
-          className="flex flex-col sm:flex-row p-4 border-t-[1px] border-gray-700 gap-2"
+          className="flex flex-col sm:flex-row p-4 border-t-[1px] h-32 sm:h-20 border-gray-700 gap-2"
         >
           <input
             ref={inputRef}
@@ -244,15 +254,15 @@ function App() {
             onChange={(e) => setNewMessage(e.target.value)}
             type="text"
             placeholder="Type a message and press Enter..."
-            className="p-2 w-full bg-[#191919] rounded-lg text-gray-300 text-sm"
+            className="p-3 w-full bg-[#191919] rounded-lg text-gray-300 text-xs sm:text-sm tracking-wider"
           />
           <button
             type="submit"
             disabled={!newMessage.trim()}
-            className={`px-4 py-2 rounded-lg transition-colors ${
+            className={`px-4 py-2 rounded-lg transition-colors font-semibold ${
               newMessage.trim()
                 ? "bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
-                : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                : "bg-[#191919] text-gray-400 cursor-not-allowed"
             }`}
           >
             Send
