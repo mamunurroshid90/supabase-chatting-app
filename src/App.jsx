@@ -156,11 +156,13 @@ function App() {
         {/* Header */}
         <div className="flex justify-between h-20 border-b-[1px] border-gray-700">
           <div className="p-4">
-            <p className="text-blue-300">
+            <p className="text-gray-300">
               Signed in as
-              <span className="italic text-sm">{session?.user?.email}</span>
+              <span className="italic text-sm text-blue-500 px-1">
+                {session?.user?.email}
+              </span>
             </p>
-            <p className="text-gray-300 italic">
+            <p className="text-gray-300 italic text-xs">
               {usersOnline.length} users online
             </p>
           </div>
