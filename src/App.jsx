@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { supabase } from "../supabaseCliend";
 import { FcGoogle } from "react-icons/fc";
 
+const siteUrl = import.meta.env.VITE_SITE_URL;
+
 function App() {
   const [session, setSession] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -127,6 +129,9 @@ function App() {
   const signIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: siteUrl,
+      },
     });
   };
 
