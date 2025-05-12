@@ -4,7 +4,7 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #252525;
 }
-button {
+/* button {
   background-color: #191919;
   color: #fff;
   border: none;
@@ -12,4 +12,4 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-}
+} */

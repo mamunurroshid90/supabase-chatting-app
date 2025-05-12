@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "../supabaseCliend";
+import { FcGoogle } from "react-icons/fc";
 
 function App() {
   const [session, setSession] = useState([]);
@@ -136,7 +137,15 @@ function App() {
   if (!session) {
     return (
       <div className="w-full flex h-screen justify-center items-center">
-        <button onClick={signIn}>Sign in with google to chat</button>
+        <button
+          onClick={signIn}
+          className=" bg-neutral-700 text-white text-sm font-semibold px-6 py-2 rounded-md flex items-center gap-2"
+        >
+          <span>
+            <FcGoogle />
+          </span>
+          Sign in with google
+        </button>
       </div>
     );
   }
@@ -147,8 +156,11 @@ function App() {
         {/* Header */}
         <div className="flex justify-between h-20 border-b-[1px] border-gray-700">
           <div className="p-4">
-            <p className="text-gray-300">Signed in as {session?.user?.email}</p>
-            <p className="text-gray-300 italic text-sm">
+            <p className="text-blue-300">
+              Signed in as
+              <span className="italic text-sm">{session?.user?.email}</span>
+            </p>
+            <p className="text-gray-300 italic">
               {usersOnline.length} users online
             </p>
           </div>
