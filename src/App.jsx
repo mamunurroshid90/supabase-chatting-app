@@ -161,11 +161,11 @@ function App() {
 
   return (
     <div className="w-full flex justify-center items-center p-4">
-      <div className="border-[1px] border-gray-700 max-w-6xl grid grid-rows-[auto_1fr_auto] min-h-screen  rounded-lg">
+      <div className="border-[1px] border-gray-700 max-w-6xl grid grid-rows-[auto_1fr_auto] min-h-dvh  rounded-lg">
         {/* Header */}
         <div className="flex justify-between items-start pt-3 w-full border-b-[1px] h-24 border-gray-700">
           <div className=" w-full  pl-3">
-            <p className="text-gray-300 font-semibold flex flex-wrap gap-y-1 justify-start">
+            <p className="text-gray-300 font-semibold flex flex-wrap gap-y-1 gap-x-1 justify-start">
               Signed in as
               <span className="italic text-sm text-blue-500">
                 {session?.user?.email}
