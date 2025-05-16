@@ -12,6 +12,8 @@ function App() {
   const [newMessage, setNewMessage] = useState("");
   const [usersOnline, setUsersOnline] = useState([]);
 
+  console.log(session);
+
   const chatContainerRef = useRef(null);
   const scroll = useRef();
   const inputRef = useRef(null);
@@ -159,13 +161,13 @@ function App() {
 
   return (
     <div className="w-full flex justify-center items-center p-4">
-      <div className="border-[1px] border-gray-700 max-w-6xl w-full grid grid-rows-[auto_1fr_auto] min-h-screen  rounded-lg">
+      <div className="border-[1px] border-gray-700 max-w-6xl grid grid-rows-[auto_1fr_auto] min-h-screen  rounded-lg">
         {/* Header */}
-        <div className="flex justify-between items-center border-b-[1px] h-24 border-gray-700">
-          <div className="p-4 max-w-[50%] sm:max-w-[70%]">
-            <p className="text-gray-300 font-semibold">
+        <div className="flex justify-between items-start pt-3 w-full border-b-[1px] h-24 border-gray-700">
+          <div className=" w-full  pl-3">
+            <p className="text-gray-300 font-semibold flex flex-wrap gap-y-1 justify-start">
               Signed in as
-              <span className="italic text-sm text-blue-500 px-1">
+              <span className="italic text-sm text-blue-500">
                 {session?.user?.email}
               </span>
             </p>
@@ -179,7 +181,7 @@ function App() {
           <div>
             <button
               onClick={signOut}
-              className="m-2 sm:mr-4 flex items-center gap-2 text-gray-300 bg-[#191919] px-4 py-3 font-semibold capitalize text-xs rounded-md cursor-pointer hover:bg-gray-800 transition-all duration-300"
+              className="mx-2 sm:mr-4 flex justify-center items-center gap-2 min-w-[90px] text-gray-300 bg-[#191919] px-2 py-2 font-semibold capitalize text-xs rounded-md cursor-pointer hover:bg-gray-800 transition-all duration-300"
             >
               Sign out
               <span className=" text-md">
@@ -207,22 +209,22 @@ function App() {
                 <img
                   src={msg.avatar}
                   alt="avatar"
-                  className="w-10 h-10 rounded-full mr-2"
+                  className="w-10 h-10 rounded-full mr-2 text-xs"
                 />
               )}
 
               <div className="flex flex-col max-w-[80%]">
                 <div
-                  className={`p-3 rounded-xl ${
+                  className={`px-2 py-1 rounded-md text-sm ${
                     msg?.user_name === session?.user?.email
-                      ? "bg-gray-700 text-white"
-                      : "bg-gray-500 text-white"
+                      ? " bg-blue-600 text-white"
+                      : " bg-[#393E46] text-white"
                   }`}
                 >
-                  <p>{msg.message}</p>
+                  <p className="">{msg.message}</p>
                 </div>
                 <div
-                  className={`text-xs opacity-75 pt-1 ${
+                  className={`text-[11px] opacity-75 pt-1 ${
                     msg?.user_name === session?.user?.email
                       ? "text-right"
                       : "text-left"
@@ -236,7 +238,7 @@ function App() {
                 <img
                   src={msg.avatar}
                   alt="avatar"
-                  className="w-10 h-10 rounded-full ml-2"
+                  className="w-10 h-10 rounded-full ml-2 text-xs"
                 />
               )}
             </div>
@@ -246,7 +248,7 @@ function App() {
         {/* Message input */}
         <form
           onSubmit={sendMessage}
-          className="flex flex-col sm:flex-row p-4 border-t-[1px] h-32 sm:h-20 border-gray-700 gap-2"
+          className="flex flex-col sm:flex-row p-3 border-t-[1px] h-32 sm:h-20 border-gray-700 gap-2"
         >
           <input
             ref={inputRef}
